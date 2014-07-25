@@ -1,0 +1,30 @@
+Option Compare Database
+
+'Searches through the fields in this database to look for a value
+Sub searchThroughProperties()
+
+Dim curForm As AccessObject
+Dim curFormTyped As Form
+'Dim curProperty As Property
+Dim curControl As Control
+Dim curValue As String
+
+'Call DoCmd.RunCommand(acCmdDebugWindow)
+'SendKeys ("^{HOME}^+{END} {BS}")
+
+For Each curFormTyped In Application.Forms
+    'Debug.Print curFormTyped.Name
+    For Each curControl In curFormTyped.Controls
+        If TypeName(curControl) = "TextBox" Then
+            'Debug.Print curControl.Name
+            curValue = curControl.Properties("DefaultValue")
+            If curValue <> "" Then
+                Debug.Print curValue, curControl.Name
+            End If
+        End If
+    Next
+Next
+
+End Sub
+
+
